@@ -22,11 +22,11 @@ public class StudentDTO {
 		this.email = email;
 	}
 
-	public long getPhone() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setPhone(int age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 

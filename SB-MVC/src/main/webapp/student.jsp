@@ -8,10 +8,10 @@
 </head>
 <body>
 	<form action="student" method="post">
-		Name : <input type="text" name="username" placeholder="Enter Name" required><br>
-		Email : <input type="email" name="useremail" placeholder="Enter Email" required><br>
-		Phone : <input type="number" name="phone" placeholder="Enter Phone" required><br>
+		Name : <input type="text" name="name" placeholder="Enter Name" required><br>
+		Email : <input type="email" name="email" placeholder="Enter Email" required><br>
 		Age : <input type="number" name="age" placeholder="Enter Age" required><br>
+		Standard : <input type="text" name="std" placeholder="Enter Standard" required><br>
 		<input type="submit" value="Submit">
 	</form>
 </body>

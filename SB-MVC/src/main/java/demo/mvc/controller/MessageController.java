@@ -83,13 +83,14 @@ public class MessageController {
 	
 	@GetMapping("/stud")
 	public String getProductPage(Model model) {
-		System.out.println("Loading for Product Page/Data... ");
 		model.addAttribute("sdto", new StudentDTO());
 		return "student.jsp";
 	}
 	
 	@PostMapping("/student")
 	public String postMethodName(StudentDTO sdto) {
+
+		System.out.println("Loading for Student Page/Data... ");
 		System.out.println(sdto);
 		return "student.jsp";
 	}
