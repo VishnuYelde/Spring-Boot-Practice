@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/student") // used to give common URL
 public class StudentCtrl {
 
 	@PostMapping("/save")
