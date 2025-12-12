@@ -1,6 +1,6 @@
 package boot.model;
 
-public class ProductModel {
+public class Product {
 	private int pid;
 	private String name;
 	private double price;
