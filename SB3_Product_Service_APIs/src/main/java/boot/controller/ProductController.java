@@ -1,5 +1,6 @@
 package boot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import boot.model.Product;
+import boot.repository.ProductRepo;
 
 @RestController
 @RequestMapping("/prod")
 public class ProductController {
 
+	// ---------------------introduction to How to send the data from client to Server--------------------------------------
+	
 	@GetMapping("/data")
 	public String getProductData(@RequestParam Integer pid, @RequestParam String name) {
 		// to check API, you have to give the Key and Value to the URL in Postman API in Params tab.
@@ -42,5 +46,10 @@ public class ProductController {
 		System.out.println(product);
 		return product;
 	}
-
+	//-----------------------------------------------------------------------------------------------------------------------------
+	
+	@Autowired	
+	private ProductRepo productRepo;
+	
+	
 }
