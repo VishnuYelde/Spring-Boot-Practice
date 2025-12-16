@@ -1,4 +1,4 @@
-spring.application.name=SB4_Product_Services
+spring.application.name=SB3_Product_Service_APIs
 
 #DB Configuration
 spring.datasource.url= jdbc:postgresql://localhost:5432/Database_Name
