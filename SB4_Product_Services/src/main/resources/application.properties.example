@@ -1,0 +1,12 @@
+spring.application.name=SB3_Product_Services
+
+#DB Configuration
+spring.datasource.url= jdbc:postgresql://localhost:5432/Database_Name
+spring.datasource.username=Username
+spring.datasource.password=Password
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=true
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
