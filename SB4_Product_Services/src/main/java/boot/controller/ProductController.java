@@ -58,15 +58,15 @@ public class ProductController {
 	}
 
 	// Pagination API (Used to Distribute records in Single page)
-	@GetMapping("/fetchpage")
+	@GetMapping("/fetchpage") //http://localhost:8080/prod/fetchpage?pageNo=1
 	public Page<Product> fetchByPage(@RequestParam Integer pageNo) {
 		Page<Product> products = productService.fetchByPage(pageNo);
 		return products;
 	}
 
 	// Sorting API (Used to sort product based on parameter) order --> asc, desc
-	@GetMapping("/sort")
-	public List<Product> sortProduct(@RequestParam(required = false) String param, @RequestParam(required = false) String order) {
+	@GetMapping("/sort") //http://localhost:8080/prod/sort?param=name&order=desc
+	public List<Product> sortProduct(@RequestParam(required = false, defaultValue = "price") String param, @RequestParam(required = false) String order) {
 		return productService.sortingProd(param, order);
 	}
 
