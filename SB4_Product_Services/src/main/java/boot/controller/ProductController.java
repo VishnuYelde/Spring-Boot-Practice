@@ -28,31 +28,31 @@ public class ProductController {
 	private ProductService productService;
 
 	// Inserting Product Records in Table
-	@PostMapping("/save")
+	@PostMapping("/save") //http://localhost:8080/prod/save
 	public Product InsertProduct(@RequestBody Product product) {
 		return productService.save(product); // Insert the data Object and returns it.
 	}
 
 	// Fetch all Data
-	@GetMapping("/getall")
+	@GetMapping("/getall") //http://localhost:8080/prod/getall
 	public List<Product> getAllProducts() {
 		return productService.findAllRecords();
 	}
 
 	// Fetch Data by ID
-	@GetMapping("/getbyid")
+	@GetMapping("/getbyid") //http://localhost:8080/prod/getbyid?pid=4
 	public Product getById(@RequestParam Integer pid) {
 		return productService.getById(pid);
 	}
 
 	// Delete Record By Id
-	@DeleteMapping("/deletebyid/{pid}")
+	@DeleteMapping("/deletebyid/{pid}") //http://localhost:8080/prod/deletebyid/4
 	public String delById(@PathVariable Integer pid) {
 		return productService.deleteById(pid);
 	}
 
 	// Update Product Record
-	@PutMapping("/update/{id}")
+	@PutMapping("/update/{id}") //http://localhost:8080/prod/update/1
 	public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
 		return productService.updatProduct(id, product);
 	}
