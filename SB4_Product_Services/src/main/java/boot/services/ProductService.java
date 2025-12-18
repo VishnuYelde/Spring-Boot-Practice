@@ -99,5 +99,28 @@ public class ProductService {
 		return filterProdList;
 	}
 	
+	// filer by priceRange // add sorting
+	public List<Product> priceRange(Double fromPrice, Double toPrice) {
+		List<Product> prod = productRepo.findByPriceBetween(fromPrice, toPrice);
+		return prod;
+	}
+	
+	// filter by Name and Price  // add sorting
+	public List<Product> filerNameAndPrice(String name, Double price) {
+		List<Product> prod = productRepo.findByNameAndPrice(name, price);
+		return prod;
+	}
+	
+	// filter by less than Price  // add sorting
+	public List<Product> filterLessPrice(Double price) {
+		List<Product> prods = productRepo.findByPriceIsLessThanEqual(price);
+		return prods;
+	}
+	
+	// Search by Name
+	public List<Product> searchByName(String name) {
+		List<Product> prods = productRepo.findByNameContainingIgnoreCase(name);
+		return prods;
+	}
 	
 }

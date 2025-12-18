@@ -32,6 +32,6 @@ public interface ProductRepo extends JpaRepository<Product, Integer>{
 	
 	public List<Product> findByPriceBetween(Double fromPrice, Double toPrice); // add sorting
 	
-	public List<Product> findByPriceIsIsLessThanEqual(Double price); // add sorting
+	public List<Product> findByPriceIsLessThanEqual(Double price); // add sorting
 	
 }

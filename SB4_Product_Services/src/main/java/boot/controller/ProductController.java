@@ -78,5 +78,39 @@ public class ProductController {
 		return filterProdsList;
 	}
 	
-
+	// Filter by Price Range
+	@GetMapping("/pricerange")
+	public List<Product> getProdByPriceRange(@RequestParam Double fprice, Double tPrice) {
+		List<Product> priceRangeProdList = productService.priceRange(fprice, tPrice);
+		return priceRangeProdList;
+	}
+	
+	// filter by Name and Price 
+	@GetMapping("/nameprice")
+	public List<Product> getProdByNameAndPrice(@RequestParam String name, Double price) {
+		return productService.filerNameAndPrice(name, price);
+	}
+	
+	// filter by less than Price 
+	@GetMapping("/lessprice")
+	public List<Product> getProdByLessPrice(@RequestParam Double price) {
+		return productService.filterLessPrice(price);
+	}
+	
+	// Search by Name
+	@GetMapping("/searchbyname")
+	public List<Product> searchByName(@RequestParam String name) {
+		return productService.searchByName(name);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
