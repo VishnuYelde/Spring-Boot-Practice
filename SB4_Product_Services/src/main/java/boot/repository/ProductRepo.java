@@ -15,10 +15,10 @@ public interface ProductRepo extends JpaRepository<Product, Integer>{
 //	@Query(value = "select * from Products", nativeQuery = true) // for SQL query
 	
 //	@Query("select p from Products p where p.price>=?1 and p.price<=?2") // Index based parameter
-	@Query("Select p from Products p where p.price>=:fromPrice and p.price<=:toPrice") // Naming based parameter
+	@Query("Select p from Product p where p.price>=:fromPrice and p.price<=:toPrice") // Naming based parameter
 	public List<Product> getProdPriceRange(Double fromPrice, Double toPrice); // filter products by price range
 	
-	@Query("select p from Products p where p.name=:prodName and p.price=:prodPrice")
+	@Query("select p from Product p where p.name=:prodName and p.price=:prodPrice")
 	public List<Product> getProdByNameAndPrice(String prodName, Double prodPrice); // filter products by name and price
 	
 	

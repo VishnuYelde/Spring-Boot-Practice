@@ -100,7 +100,8 @@ public class ProductService {
 	}
 	
 	// filer by priceRange // add sorting
-	public List<Product> priceRange(Double fromPrice, Double toPrice) {
+	public List<Product> priceRange(Double fromPrice, Double toPrice) {		
+//		List<Product> prod = productRepo.getProdPriceRange(fromPrice, toPrice);
 		List<Product> prod = productRepo.findByPriceBetween(fromPrice, toPrice);
 		return prod;
 	}

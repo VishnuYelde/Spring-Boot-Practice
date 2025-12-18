@@ -80,14 +80,14 @@ public class ProductController {
 	
 	// Filter by Price Range
 	@GetMapping("/pricerange")
-	public List<Product> getProdByPriceRange(@RequestParam Double fprice, Double tPrice) {
-		List<Product> priceRangeProdList = productService.priceRange(fprice, tPrice);
+	public List<Product> getProdByPriceRange(@RequestParam Double fPrice, @RequestParam Double tPrice) {
+		List<Product> priceRangeProdList = productService.priceRange(fPrice, tPrice);
 		return priceRangeProdList;
 	}
 	
 	// filter by Name and Price 
 	@GetMapping("/nameprice")
-	public List<Product> getProdByNameAndPrice(@RequestParam String name, Double price) {
+	public List<Product> getProdByNameAndPrice(@RequestParam String name, @RequestParam Double price) {
 		return productService.filerNameAndPrice(name, price);
 	}
 	
@@ -102,15 +102,5 @@ public class ProductController {
 	public List<Product> searchByName(@RequestParam String name) {
 		return productService.searchByName(name);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
