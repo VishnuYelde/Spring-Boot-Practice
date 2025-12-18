@@ -1,8 +1,11 @@
 package boot.services;
 
+import java.beans.Beans;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import boot.dao.ProductDAO;
+import boot.dto.FilterDTO;
 import boot.model.Product;
 import boot.repository.ProductRepo;
 
@@ -84,5 +88,16 @@ public class ProductService {
 		}
 		return productRepo.findAll(Sort.by(param).ascending());
 	}
-
+	
+	// Filter the products based on parameters
+	public List<Product> filterProd(FilterDTO filterDTO) {
+		Product product = new Product();
+		BeanUtils.copyProperties(filterDTO, product);
+		
+		Example<Product> exampleProd = Example.of(product);
+		List<Product> filterProdList = productRepo.findAll(exampleProd);
+		return filterProdList;
+	}
+	
+	
 }

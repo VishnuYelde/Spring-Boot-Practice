@@ -3,6 +3,7 @@ package boot.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import boot.dto.FilterDTO;
 import boot.model.Product;
 import boot.services.ProductService;
 
@@ -69,5 +70,13 @@ public class ProductController {
 	public List<Product> sortProduct(@RequestParam(required = false, defaultValue = "price") String param, @RequestParam(required = false) String order) {
 		return productService.sortingProd(param, order);
 	}
+	
+	// Filter the Products using FilterDTO object
+	@GetMapping("/filter")
+	public List<Product> filterProd(@RequestBody FilterDTO filterDTO) {
+		List<Product> filterProdsList = productService.filterProd(filterDTO);
+		return filterProdsList;
+	}
+	
 
 }
