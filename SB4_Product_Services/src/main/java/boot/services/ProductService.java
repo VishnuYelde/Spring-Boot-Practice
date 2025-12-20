@@ -10,6 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import boot.dao.ProductDAO;
@@ -39,7 +42,7 @@ public class ProductService {
 	}
 
 	// to Update the Data/Record
-	public Product updatProduct(Integer pid, Product product) {
+	public Product updateProduct(Integer pid, Product product) {
 
 		Product dbPrevProduct = productDAO.getById(pid);
 		if (dbPrevProduct.getName() != null) {
@@ -61,11 +64,14 @@ public class ProductService {
 	}
 
 	// to Delete record by Id
-	public String deleteById(Integer pid) {
+	public ResponseEntity<String> deleteById(Integer pid) {
 		Product dbPrevProduct = productDAO.getById(pid);
 		productDAO.delete(dbPrevProduct);
 
-		return "Product Delete Successfully";
+//		return "Product Delete Successfully";
+		
+		// It is used to change the status code of API or return the Message. 
+		return ResponseEntity.status(HttpStatus.OK).body("Product with ID = "+dbPrevProduct.getPid()+" is Deleted");
 	}
 
 	// to Fetch all records
@@ -122,6 +128,16 @@ public class ProductService {
 	public List<Product> searchByName(String name) {
 		List<Product> prods = productRepo.findByNameContainingIgnoreCase(name);
 		return prods;
+	}
+	
+	// Special case of ResponseEntity
+	public ResponseEntity<?> testEntity(){
+		int n = 2;
+		if (n % 2 == 0) {
+			return new ResponseEntity<Integer>(n, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("Odd Number", HttpStatus.OK);
+		}
 	}
 	
 }

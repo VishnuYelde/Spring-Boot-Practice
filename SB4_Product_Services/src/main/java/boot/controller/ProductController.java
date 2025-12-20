@@ -11,7 +11,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,8 +34,9 @@ public class ProductController {
 
 	// Inserting Product Records in Table
 	@PostMapping("/save") //http://localhost:8080/prod/save
-	public Product InsertProduct(@RequestBody Product product) {
-		return productService.save(product); // Insert the data Object and returns it.
+	public ResponseEntity<Product> InsertProduct(@RequestBody Product product) {
+		Product saveProd = productService.save(product); // Insert the data Object and returns it.
+		return new ResponseEntity<Product>(saveProd, HttpStatus.CREATED); // change 200 status code to 201 OK.
 	}
 
 	// Fetch all Data
@@ -48,14 +53,15 @@ public class ProductController {
 
 	// Delete Record By Id
 	@DeleteMapping("/deletebyid/{pid}") //http://localhost:8080/prod/deletebyid/4
-	public String delById(@PathVariable Integer pid) {
+	public ResponseEntity<String> delById(@PathVariable Integer pid) {
 		return productService.deleteById(pid);
 	}
 
 	// Update Product Record
 	@PutMapping("/update/{id}") //http://localhost:8080/prod/update/1
-	public Product updateProduct(@PathVariable Integer id, @RequestBody Product product) {
-		return productService.updatProduct(id, product);
+	public ResponseEntity<String> updateProduct(@PathVariable Integer id, @RequestBody Product product) {
+		Product updatedProduct = productService.updateProduct(id, product);
+		return ResponseEntity.ok().body("Product with Id = "+updatedProduct.getPid()+" is Updated");
 	}
 
 	// Pagination API (Used to Distribute records in Single page)
@@ -103,4 +109,36 @@ public class ProductController {
 		return productService.searchByName(name);
 	}
 	
+	// Exception Handling
+	
+	@GetMapping("/excp")
+	public String demomsg() {
+		String string = null;
+		string.charAt(10);
+
+		int a = 10/0;
+		
+		return "Exception Maybe or Not";
+	}
+	
+	// Exception handled for Arithmetic expression
+	@ExceptionHandler(ArithmeticException.class)
+	public ResponseEntity<String> handleException(ArithmeticException ae){
+		System.out.println("AE Handled");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
+	}
+	
+	// Exception handled for NullPointer Exception
+	@ExceptionHandler(NullPointerException.class)
+	public ResponseEntity<String> nullExcepHandled(NullPointerException nException) {
+		System.out.println("NullPointerException Handled");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(nException.getMessage());
+	}
+	
+	// // Exception handled for All Exception
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> excepHandled(Exception exception) {
+		System.out.println("All Exception Handled");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+	}
 }
