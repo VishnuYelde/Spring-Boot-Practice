@@ -1,6 +1,5 @@
 package boot.services;
 
-import java.beans.Beans;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -11,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +30,9 @@ public class ProductService {
 	private ProductRepo productRepo;
 
 	// to insert the record/Data
-	public Product save(Product product) {
-		return productDAO.save(product);
+	public ResponseEntity<Product> save(Product product) {
+		Product saveProd = productDAO.save(product);
+		return new ResponseEntity<Product>(saveProd, HttpStatus.CREATED);
 	}
 
 	// to fetch data by id

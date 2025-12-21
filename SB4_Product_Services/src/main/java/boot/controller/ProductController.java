@@ -35,8 +35,8 @@ public class ProductController {
 	// Inserting Product Records in Table
 	@PostMapping("/save") //http://localhost:8080/prod/save
 	public ResponseEntity<Product> InsertProduct(@RequestBody Product product) {
-		Product saveProd = productService.save(product); // Insert the data Object and returns it.
-		return new ResponseEntity<Product>(saveProd, HttpStatus.CREATED); // change 200 status code to 201 OK.
+		return productService.save(product); // Insert the data Object and returns it.
+		// change 200 status code to 201 OK, means new resource is created.
 	}
 
 	// Fetch all Data
@@ -54,7 +54,7 @@ public class ProductController {
 	// Delete Record By Id
 	@DeleteMapping("/deletebyid/{pid}") //http://localhost:8080/prod/deletebyid/4
 	public ResponseEntity<String> delById(@PathVariable Integer pid) {
-		return productService.deleteById(pid);
+		return productService.deleteById(pid); // returns the Response Entity Status code with message body
 	}
 
 	// Update Product Record
