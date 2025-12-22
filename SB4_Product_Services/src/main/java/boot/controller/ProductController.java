@@ -119,13 +119,13 @@ public class ProductController {
 
 		int a = 10/0;
 		
-		return "Exception Maybe or Not";
+		return "Exception Maybe or Maybe Not";
 	}
 	
 	// Exception handled for Arithmetic expression
 	@ExceptionHandler(ArithmeticException.class)
 	public ResponseEntity<String> handleException(ArithmeticException ae){
-		System.out.println("AE Handled");
+		System.out.println("ArithmeticException Handled");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ae.getMessage());
 	}
 	
@@ -139,7 +139,7 @@ public class ProductController {
 	// // Exception handled for All Exception
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> excepHandled(Exception exception) {
-		System.out.println("All Exception Handled");
+		System.out.println("Exception Handled");
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
 }

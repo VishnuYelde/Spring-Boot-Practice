@@ -12,7 +12,7 @@ public class TestController {
 	@GetMapping("/t1")
 	public String getMsg() {
 		int a = 10/0;
-		return "Error";
+		return "Message from Spring Boot";
 	}
 	
 }
