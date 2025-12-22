@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import boot.dto.FilterDTO;
 import boot.model.Product;
 import boot.services.ProductService;
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class ProductController {
 
 	// Inserting Product Records in Table
 	@PostMapping("/save") //http://localhost:8080/prod/save
-	public ResponseEntity<Product> InsertProduct(@RequestBody Product product) {
+	public ResponseEntity<Product> InsertProduct(@Valid @RequestBody Product product) {
 		return productService.save(product); // Insert the data Object and returns it.
 		// change 200 status code to 201 OK, means new resource is created.
 	}
@@ -79,7 +80,7 @@ public class ProductController {
 	
 	// Filter the Products using FilterDTO object
 	@GetMapping("/filter")
-	public List<Product> filterProd(@RequestBody FilterDTO filterDTO) {
+	public List<Product> filterProd(@Valid @RequestBody FilterDTO filterDTO) {
 		List<Product> filterProdsList = productService.filterProd(filterDTO);
 		return filterProdsList;
 	}
