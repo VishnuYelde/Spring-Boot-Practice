@@ -16,6 +16,8 @@ public class AppSecurity {
 					.authorizeHttpRequests(req -> req
 							.requestMatchers("/register")
 							.permitAll()
+							.requestMatchers("/msg")
+							.hasRole("ADMIN")
 							.anyRequest()
 							.authenticated())
 					.formLogin(f -> f.successForwardUrl("/greet")); // by default POST method
