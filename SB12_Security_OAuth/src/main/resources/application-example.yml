@@ -1,0 +1,16 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - The yaml file had comments which are lost in the refactoring!
+spring:
+  application:
+    name: SB12_Security_OAuth
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: '{google-client-id}'
+            client-secret: '{google-client-secret}'
+          github:
+            client-id: '{github-client-id}'
+            client-secret: '{github-client-secret}'

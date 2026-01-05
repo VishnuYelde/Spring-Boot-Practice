@@ -1,0 +1,16 @@
+/.metadata/
+
+# Maven
+target/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Spring Boot
+**/src/main/resources/application.properties
+**/src/main/resources/application.yml
+
+# Logs
+*.log
